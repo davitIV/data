@@ -2,23 +2,24 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/fatih/color"
+	"io/ioutil"
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	// ფერის ტექსტი კონსოლში
-	red := color.New(color.FgRed)
-	red.Println("გამარჯობა სიდო 🚀")
-
 	// Fiber HTTP სერვერი
 	app := fiber.New()
 
 	// "/" ბმული
 	app.Get("/", func(c *fiber.Ctx) error {
-		// HTML გვერდი, სადაც ტექსტი წითლად იქნება
-		return c.SendString("<h1 style='color:red;'>გამარჯობა სიდო 🚀</h1>")
+		// HTML ფაილის წაკითხვა
+		data, err := ioutil.ReadFile("index.html")
+		if err != nil {
+			return c.Status(500).SendString("Error reading HTML file")
+		}
+
+		// HTML ფაილის გადაცემაც
+		return c.SendString(string(data))
 	})
 
 	fmt.Println("Server is running on http://localhost:3000")
