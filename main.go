@@ -9,14 +9,16 @@ import (
 
 func main() {
 	// ფერის ტექსტი კონსოლში
-	red := color.New(color.FgRed).Add(color.Underline)
+	red := color.New(color.FgRed)
 	red.Println("გამარჯობა სიდო 🚀")
 
 	// Fiber HTTP სერვერი
 	app := fiber.New()
 
+	// "/" ბმული
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("გამარჯობა სიდო 🚀")
+		// HTML გვერდი, სადაც ტექსტი წითლად იქნება
+		return c.SendString("<h1 style='color:red;'>გამარჯობა სიდო 🚀</h1>")
 	})
 
 	fmt.Println("Server is running on http://localhost:3000")
