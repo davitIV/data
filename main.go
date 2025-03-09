@@ -18,8 +18,9 @@ func main() {
 			return c.Status(500).SendString("Error reading HTML file")
 		}
 
-		// HTML ფაილის გადაცემაც
-		return c.SendString(string(data))
+		// HTML კონტენტის გადაცემა სწორ MIME ტიპით
+		c.Set("Content-Type", "text/html; charset=utf-8")
+		return c.Send(data)
 	})
 
 	fmt.Println("Server is running on http://localhost:3000")
