@@ -2,25 +2,30 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
+	"log"
+	"os"
+
 	"github.com/gofiber/fiber/v2"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
+var db *pgxpool.Pool
+
 func main() {
-	// Fiber HTTP სერვერი
+	// PostgreSQL კავშირის შექმნა
+	databaseUrl := os.Getenv("DATABASE_URL") // Railway-სგან მიღებული URL
+	var err error
+	db, err = pgxpool.New(nil, databaseUrl)
+	if err != nil {
+		log.Fatal("DB Connection Error: ", err)
+	}
+	defer db.Close()
+
 	app := fiber.New()
 
 	// "/" ბმული
 	app.Get("/", func(c *fiber.Ctx) error {
-		// HTML ფაილის წაკითხვა
-		data, err := ioutil.ReadFile("index.html")
-		if err != nil {
-			return c.Status(500).SendString("Error reading HTML file")
-		}
-
-		// HTML კონტენტის გადაცემა სწორ MIME ტიპით
-		c.Set("Content-Type", "text/html; charset=utf-8")
-		return c.Send(data)
+		return c.SendString("Hello, World!")
 	})
 
 	fmt.Println("Server is running on http://localhost:3000")
