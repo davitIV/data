@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>მიყვარხარ სიდო</title>
+        <title>მთავარი გვერდი</title>
         <style>
             body {
                 font-family: "Arial", sans-serif;
@@ -28,55 +28,36 @@
                 font-size: 3em;
                 margin-bottom: 10px;
             }
-            p {
-                font-size: 1.5em;
-                color: #555;
+            .button-container {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
             }
-            .heart {
-                font-size: 2.5em;
-                color: red;
-            }
-            .footer {
-                margin-top: 20px;
-                font-size: 1.2em;
-                color: #888;
-            }
-            .footer span {
-                color: #d9534f;
-            }
-            .buttons {
-                margin-top: 20px;
-            }
-            .button {
-                padding: 10px 20px;
-                font-size: 1.2em;
-                color: #fff;
+            button {
                 background-color: #d9534f;
+                color: white;
+                padding: 15px 25px;
                 border: none;
-                border-radius: 5px;
+                border-radius: 10px;
+                font-size: 1.2em;
                 cursor: pointer;
-                margin: 10px;
-                text-decoration: none;
+                transition: background-color 0.3s;
             }
-            .button:hover {
+            button:hover {
                 background-color: #c9302c;
             }
         </style>
     </head>
     <body>
         <div class="container">
-            <h1>ძალიან მიყვარხარ სიდო!</h1>
-            <p>ჩემი გული მხოლოდ შენთვის ცემს, სიდო. 💖</p>
-            <p class="heart">❤️</p>
-            <div class="buttons">
-                <a href="signup.html" class="button">რეგისტრაცია</a>
-                <a href="login.html" class="button">ლოგინი</a>
-            </div>
-            <div class="footer">
-                <p>
-                    სიყვარული შენთან ერთად არის ყოველი დღე უკეთესი.
-                    <span>3 წელი და უფრო მეტი</span>
-                </p>
+            <h1>მოგესალმებით!</h1>
+            <div class="button-container">
+                <button onclick="window.location.href='signup.html'">
+                    რეგისტრაცია
+                </button>
+                <button onclick="window.location.href='login.html'">
+                    ლოგინი
+                </button>
             </div>
         </div>
     </body>
